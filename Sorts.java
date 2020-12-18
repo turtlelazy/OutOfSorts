@@ -35,10 +35,13 @@ public class Sorts{
                     index = a;
                 }
             }
-            data[index] = data[i];
-            for(int a = index;a<i-1;a++ ){
-                data[a+1] = data[a];
+
+            int temp = data[i];
+
+            for(int a = i;a>index;a-- ){
+                data[a] = data[a-1];
             }
+            data[index] = temp;
         }
 
     }
