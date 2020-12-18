@@ -16,7 +16,7 @@ public class Sorts{
 
         for(int i = 0; i<data.length;i++){
             int temp = data[i];
-            for(int a = i;i<data.length;a++){
+            for(int a = i;a<data.length;a++){
                 if(data[a] < temp){
                     temp = data[a];
                     data[a] = data[i];
