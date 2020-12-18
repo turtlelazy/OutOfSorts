@@ -13,7 +13,7 @@ public class Driver{
     if(args[1].equals("bubble")){
       Sorts.bubbleSort(randData);
     }
-    if(args[1].equals("test")){
+    if(args[1].equals("testBubble")){
       int[] randDataBubble = Arrays.copyOf(randData,randData.length);
       Arrays.sort(randData);
       Sorts.bubbleSort(randDataBubble);
@@ -24,6 +24,18 @@ public class Driver{
       }else{
        System.out.println("Bubble Not Correct!!!!!!!!!11oneeleven");
       }
+    }
+
+    if (args[1].equals("testSelect")) {
+        int[] randDataSelect = Arrays.copyOf(randData, randData.length);
+        Arrays.sort(randData);
+        Sorts.selectionSort(randDataSelect);
+
+        if (Arrays.equals(randData, randDataSelect)) {
+            System.out.println("Selection Correct!");
+        } else {
+            System.out.println("Selection Not Correct!!!!!!!!!11oneeleven");
+        }
     }
   }
 }

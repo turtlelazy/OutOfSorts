@@ -9,17 +9,21 @@ public class Sorts{
                     data[i+1] = temp;
                 }
             }
-    }
+        }
     }
 
     public static void selectionSort(int[] data) {
+
         for(int i = 0; i<data.length;i++){
-            int smallest = data[i];
+            int temp = data[i];
             for(int a = i;i<data.length;a++){
-                if(data[a] < smallest){
-                    smallest = data[a];
+                if(data[a] < temp){
+                    temp = data[a];
+                    data[a] = data[i];
+                    data[i] = temp;
                 }
             }
         }
+
     }
 }
