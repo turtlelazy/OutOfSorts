@@ -1,5 +1,6 @@
 public class Sorts{
 
+    //original solution had a for loop instead of a while loop, which prevented bubble sort from ending early
     public static void bubbleSort(int[] data){
         boolean complete = false;
         while(!complete){
@@ -16,17 +17,21 @@ public class Sorts{
         
     }
 
+    //previous selection sort did multiple swaps, which was less true to the sort type
     public static void selectionSort(int[] data) {
 
         for(int i = 0; i<data.length;i++){
-            int temp = data[i];
+            int smallerIndex = i;
+
             for(int a = i;a<data.length;a++){
-                if(data[a] < temp){
-                    temp = data[a];
-                    data[a] = data[i];
-                    data[i] = temp;
+                if(data[a] < data[smallerIndex]){
+                    smallerIndex = a;
                 }
             }
+            
+            int temp = data[i];
+            data[i] = data[smallerIndex];
+            data[smallerIndex] = temp;
         }
 
     }
