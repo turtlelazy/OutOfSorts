@@ -1,54 +1,86 @@
 import java.util.Arrays;
+import java.util.Random;
 public class Driver{
-
   public static void main(String[]args){
-    //args 0 must be size of the Array
-    //args 1 must be "bubble" or "test" (unless you add more)
-    int[] randData = new int[Integer.parseInt(args[0])];
-
-    for(int i = 0 ; i < randData.length; i++){
-      randData[i] =(int)(Math.random()*10000);
-    }
-
-    if(args[1].equals("bubble")){
-      Sorts.bubbleSort(randData);
-    }
-    if(args[1].equals("testBubble")){
-      int[] randDataBubble = Arrays.copyOf(randData,randData.length);
-      Arrays.sort(randData);
-      Sorts.bubbleSort(randDataBubble);
+    if(args.length < 2){
+      System.out.println("usage: java Driver SIZE ALGO [STYLE]");
+      System.out.println("supported ALGO: bubble,selection,insertion,test");
+      System.out.println("supported STYLE: random,equal,sorted,reversed");
+    }else{
 
 
-      if( Arrays.equals(randData,randDataBubble)){
-        System.out.println("Bubble Correct!");
-      }else{
-       System.out.println("Bubble Not Correct!!!!!!!!!11oneeleven");
-      }
-    }
-
-    if (args[1].equals("testSelect")) {
-        int[] randDataSelect = Arrays.copyOf(randData, randData.length);
-        Arrays.sort(randData);
-        Sorts.selectionSort(randDataSelect);
-
-        if (Arrays.equals(randData, randDataSelect)) {
-            System.out.println("Selection Correct!");
-        } else {
-            System.out.println("Selection Not Correct!!!!!!!!!11oneeleven");
+      int[] randData = new int[Integer.parseInt(args[0])];
+      Random random = new Random(0);
+      //overhead: 1 random array generation.
+      if(args.length < 3 || args[2].equals("random")){
+        for(int i =0;i<randData.length;i++){
+          randData[i] = random.nextInt() % 1000;
         }
-    }
+        
+      
+      }
+      else if(args[2].equals("equal")){
+        int randomInt = random.nextInt()%1000;
+	      for(int i = 0;i<randData.length;i++){
+          randData[i] = randomInt;
+        }
+      }
+      else if(args[2].equals("sorted")){
+        int randomInt = random.nextInt()%1000;
+        for(int i = 0;i<randData.length;i++){
+          randomInt += i;
+          randData[i] = randomInt;
+        }
+      }
+      else if(args[2].equals("reversed")){
+	      int randomInt = random.nextInt() % 1000;
+        for (int i = 0; i < randData.length; i++) {
+          randomInt -= i;
+          randData[i] = randomInt;
+        }
+      }
 
-    if (args[1].equals("testInsert")) {
-      int[] randDataInsert = Arrays.copyOf(randData, randData.length);
-      Arrays.sort(randData);
-      Sorts.insertionSort(randDataInsert);
+      if(args[1].equals("bubble")){
+        Sorts.bubbleSort(randData);
+      }
+      else if(args[1].equals("selection")){
+        Sorts.selectionSort(randData);
+      }
+      else if(args[1].equals("insertion")){
+        Sorts.insertionSort(randData);
+      }
 
-      if (Arrays.equals(randData, randDataInsert)) {
-        System.out.println("Insertion Correct!");
-      } else {
-        System.out.println("Insertion Not Correct!!!!!!!!!11oneeleven");
+      //TEST MODE! This lets you see if your algorithm fails 
+      //for a particular type of array, or size of array.
+      //This is not meant to be a timed test...
+      else if(args[1].equals("test")){
+
+        int[] randDataBubble = Arrays.copyOf(randData,randData.length);
+        int[] randDataSelection = Arrays.copyOf(randData,randData.length);
+        int[] randDataInsertion = Arrays.copyOf(randData,randData.length);
+        Arrays.sort(randData);
+        Sorts.bubbleSort(randDataBubble);
+        Sorts.selectionSort(randDataSelection);
+        Sorts.insertionSort(randDataInsertion);
+
+        if( Arrays.equals(randData,randDataBubble)){
+          System.out.println("Bubble Correct!");
+        }else{
+         System.out.println("Bubble Not Correct!!!!!!!!!11oneeleven");
+        }
+
+        if( Arrays.equals(randData,randDataSelection)){
+          System.out.println("Selection Correct!");
+        }else{
+         System.out.println("Selection Not Correct!!!!!!!!!11oneeleven");
+        }
+
+        if( Arrays.equals(randData,randDataInsertion)){
+          System.out.println("Insertion Correct!");
+        }else{
+         System.out.println("Insertion Not Correct!!!!!!!!!11oneeleven");
+        }
       }
     }
-
   }
 }

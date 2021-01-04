@@ -1,15 +1,19 @@
 public class Sorts{
 
     public static void bubbleSort(int[] data){
-        for(int a = 0; a<data.length;a++){
+        boolean complete = false;
+        while(!complete){
+            complete = true;
             for (int i = 0; i < data.length-1;i++){
                 if(data[i] > data[i+1]){
                     int temp = data[i];
                     data[i] = data[i+1];
                     data[i+1] = temp;
+                    complete = false;
                 }
             }
         }
+        
     }
 
     public static void selectionSort(int[] data) {
